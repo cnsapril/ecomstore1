@@ -1,0 +1,17 @@
+{% extends 'catalog.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>{{ c.name }}</h1>
+    {{ c.description }}
+    <br><br>
+    {% for p in products %}
+        <div class="product_thumbnail">
+            <a href="{{ p.get_absolute_url }}">
+                {% with 'catalog/img/products/thumbnails/'|add:p.image as image_static %}
+                    <img src="{% static image_static %}" alt="{{ p.name }}" class="bn">
+                {% endwith %}
+            </a>
+        </div>
+    {% endfor %}
+{% endblock %}
